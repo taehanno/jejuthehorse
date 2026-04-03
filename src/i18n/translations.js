@@ -158,6 +158,85 @@ const translations = {
     footerPhone: '010-2732-3666',
     footerHours: '周二~周六 09:00~18:00 (休息 12:00~13:20) / 周一休息',
   },
+  en: {
+    // Header
+    subtitle: 'Horse Riding Reservation',
+    // Gallery
+    galleryTitle: 'Jeju The Horse Ranch',
+    gallerySub: 'Horse riding experience in the nature of Aewol, Jeju',
+    // Date
+    dateLabel: 'Select Date',
+    datePlaceholder: 'Select a date',
+    dateNote: '* Closed on Mondays',
+    dateError: 'Please select a date.',
+    dateMondayError: 'We are closed on Mondays. Please choose another date.',
+    // Time
+    timeLabel: 'Select Time',
+    timePlaceholder: 'Select a time',
+    timeError: 'Please select a time.',
+    // Persons
+    personsLabel: 'Participants',
+    addPerson: '+ Add Person',
+    personsError: 'Please select a course or single ride for every person.',
+    // PersonCard
+    person: 'Person',
+    ageLabel: 'Age Group',
+    adult: 'Adult',
+    child: 'Child',
+    orDivider: 'Choose a course or single ride experience',
+    courseSection: '🐎 Course Experience',
+    horseSection: '🏇 Single Ride Experience',
+    forestAdd: 'Forest Trail',
+    courses: [
+      { value: 'A', label: 'Course A', sub: 'Loop Trail', duration: '10-15 min', price: '₩33,000' },
+      { value: 'B', label: 'Course B', sub: 'Ranch Trail', duration: '20-25 min', price: '₩66,000' },
+      { value: 'C', label: 'Course C', sub: 'Ranch Loop', duration: '30-35 min', price: '₩99,000' },
+    ],
+    horses: [
+      { value: '한라마', label: 'Halla Horse', price: '₩110,000' },
+      { value: '웜블러드', label: 'Warmblood', price: '₩132,000' },
+    ],
+    // Summary
+    summaryTitle: 'Booking Summary',
+    totalPersons: 'Total Persons',
+    totalPrice: 'Total Price',
+    personUnit: '',
+    priceUnit: '',
+    // Customer
+    customerTitle: 'Contact Information',
+    nameLabel: 'Name',
+    namePlaceholder: 'Your name',
+    nameError: 'Please enter your name.',
+    phoneLabel: 'Phone Number',
+    phonePlaceholder: '010-0000-0000',
+    phoneError: 'Please enter your phone number.',
+    // Submit
+    submitBtn: 'Send Reservation Request',
+    submitting: 'Sending...',
+    submitError: 'Failed to send reservation. Please try again.',
+    // Directions
+    directionsTitle: 'Getting Here',
+    directionsAddr: '81 Sanrokso-ro, Aewol-eup, Jeju City',
+    directionsDesc: 'From Nocosse, follow the riding ranch signs\ndown to the blue-roofed ranch',
+    mapLink: 'View on Map →',
+    // Complete
+    completeTitle: 'Reservation Received!',
+    completeSub: 'We will contact you shortly',
+    detailTitle: 'Booking Details',
+    labelReserver: 'Name',
+    labelPhone: 'Phone',
+    labelDate: 'Date',
+    labelTime: 'Time',
+    labelTotalPersons: 'Total',
+    breakdownTitle: 'Per Person Breakdown',
+    noteTitle: 'Notice',
+    noteText: 'Booking confirmation will be sent via call or text after staff review.',
+    noteContact: 'Inquiry: 010-2732-3666',
+    // Footer
+    footerAddr: '2156-15 Sangga-ri, Aewol-eup, Jeju City',
+    footerPhone: '010-2732-3666',
+    footerHours: 'Tue–Sat 09:00–18:00 (Break 12:00–13:20) / Closed Mon',
+  },
 }
 
 export default translations

@@ -134,7 +134,7 @@ export default function ReservationPage({ onSubmitted }) {
           </div>
           {/* Language Toggle */}
           <div className="flex items-center gap-1 bg-toss-bg rounded-xl p-1">
-            {['ko', 'zh'].map((l) => (
+            {[['ko', '한국어'], ['en', 'EN'], ['zh', '中文']].map(([l, label]) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
@@ -144,7 +144,7 @@ export default function ReservationPage({ onSubmitted }) {
                     : 'text-toss-tertiary'
                 }`}
               >
-                {l === 'ko' ? '한국어' : '中文'}
+                {label}
               </button>
             ))}
           </div>
