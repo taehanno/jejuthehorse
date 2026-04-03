@@ -58,6 +58,16 @@ export default function PersonCard({ person, index, onChange, onRemove, showRemo
           </div>
         </div>
 
+        {/* Age Notice */}
+        {ageType && (
+          <div className="rounded-xl bg-amber-50 border border-amber-200 px-3 py-2.5 space-y-1.5">
+            <p className="text-xs text-amber-800 whitespace-pre-line">
+              {ageType === t.child ? t.ageNoticeChild : t.ageNoticeAdult}
+            </p>
+            <p className="text-xs text-amber-700 border-t border-amber-200 pt-1.5">{t.ageNoticeCommon}</p>
+          </div>
+        )}
+
         {/* Divider */}
         <div className="flex items-center gap-2 text-xs text-toss-placeholder">
           <div className="flex-1 h-px bg-toss-line" />

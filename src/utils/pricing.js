@@ -16,10 +16,13 @@ export function formatPrice(num) {
   return num.toLocaleString('ko-KR')
 }
 
+const ADULT_VALUES = new Set(['성인', 'Adult', '成人'])
+
 export function buildPersonsDetail(persons) {
   return persons
     .map((p, i) => {
-      const parts = [p.ageType || '—']
+      const ageLabel = ADULT_VALUES.has(p.ageType) ? '성인' : '아동'
+      const parts = [ageLabel]
       if (p.horse) {
         parts.push(`1회 기승 / ${p.horse}`)
       } else if (p.course) {

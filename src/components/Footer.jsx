@@ -10,7 +10,7 @@ export default function Footer() {
         <p className="font-semibold text-toss-secondary">Jeju The Horse</p>
       </div>
       <p>📍 {t.footerAddr}</p>
-      <p>📞 {t.footerPhone}</p>
+      <p>📞 <a href={`tel:${t.footerPhone.replace(/-/g, '')}`} className="text-toss-blue underline">{t.footerPhone}</a></p>
       <p>🕘 {t.footerHours}</p>
       <p>
         📸{' '}
