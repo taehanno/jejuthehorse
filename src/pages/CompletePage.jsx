@@ -11,9 +11,9 @@ export default function CompletePage({ data }) {
       <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-8 space-y-4">
         {/* Hero */}
         <div className="text-center py-8">
-          <div className="text-5xl mb-4">✅</div>
+          <div className="text-5xl mb-4">📋</div>
           <h1 className="text-xl font-bold text-toss-label">{t.completeTitle}</h1>
-          <p className="text-toss-tertiary text-sm mt-1">{t.completeSub}</p>
+          <p className="text-amber-600 text-sm font-medium mt-1">{t.completeSub}</p>
         </div>
 
         {/* Reservation Details */}
@@ -41,10 +41,10 @@ export default function CompletePage({ data }) {
         </div>
 
         {/* Note */}
-        <div className="bg-toss-white border border-toss-line rounded-2xl p-4 text-xs text-toss-tertiary">
-          <p className="font-semibold text-toss-secondary mb-1">{t.noteTitle}</p>
-          <p>{t.noteText}</p>
-          <p className="mt-1">{t.noteContact}</p>
+        <div className="bg-amber-50 border-2 border-amber-400 rounded-2xl p-4 text-xs">
+          <p className="font-bold text-amber-700 mb-2 text-sm">{t.noteTitle}</p>
+          <p className="text-amber-800 font-medium leading-relaxed">{t.noteText}</p>
+          <p className="mt-2 text-amber-700">{t.noteContact}</p>
         </div>
       </div>
 
