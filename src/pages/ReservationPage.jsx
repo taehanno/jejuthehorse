@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import logo from '../image/Jeju logo.jpg'
 import emailjs from '@emailjs/browser'
+import logo from '../image/Jeju logo.jpg'
 import PersonCard from '../components/PersonCard'
 import SummarySection from '../components/SummarySection'
 import Footer from '../components/Footer'
@@ -73,7 +73,6 @@ export default function ReservationPage({ onSubmitted }) {
     const errs = validate()
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
-      // scroll to first error
       const firstKey = Object.keys(errs)[0]
       const el = document.getElementById(`field-${firstKey}`)
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -101,14 +100,7 @@ export default function ReservationPage({ onSubmitted }) {
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
-      onSubmitted({
-        date,
-        time,
-        persons,
-        total,
-        customerName,
-        customerPhone,
-      })
+      onSubmitted({ date, time, persons, total, customerName, customerPhone })
     } catch (err) {
       console.error(err)
       setErrors({ submit: '예약 전송에 실패했습니다. 잠시 후 다시 시도해주세요.' })
@@ -118,56 +110,59 @@ export default function ReservationPage({ onSubmitted }) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-6 space-y-5">
-        {/* Header */}
-        <div className="text-center pb-2">
-          <div className="flex items-center justify-center gap-2">
-            <img src={logo} alt="Jeju The Horse 로고" className="h-10 w-10 rounded-full object-cover" />
-            <h1 className="text-2xl font-bold text-earth-800">Jeju The Horse</h1>
+    <div className="min-h-screen flex flex-col bg-toss-bg">
+      {/* Top Header Bar */}
+      <div className="bg-toss-white border-b border-toss-line sticky top-0 z-10">
+        <div className="max-w-[480px] mx-auto px-4 py-3 flex items-center gap-2.5">
+          <img src={logo} alt="Jeju The Horse 로고" className="h-8 w-8 rounded-full object-cover" />
+          <div>
+            <p className="font-bold text-toss-label text-sm leading-tight">Jeju The Horse</p>
+            <p className="text-toss-tertiary text-xs">승마 체험 예약</p>
           </div>
-          <p className="text-forest-600 font-medium mt-1">승마 체험 예약</p>
         </div>
+      </div>
+
+      <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-5 space-y-3">
 
         {/* Date Picker */}
-        <div id="field-date" className="bg-white rounded-2xl shadow-sm border border-earth-100 p-4">
-          <label className="block text-sm font-semibold text-earth-700 mb-2">
-            날짜 선택 <span className="text-red-500">*</span>
+        <div id="field-date" className="bg-toss-white rounded-2xl border border-toss-line p-4">
+          <label className="block text-sm font-semibold text-toss-label mb-2">
+            날짜 선택 <span className="text-red-400">*</span>
           </label>
           <input
             type="date"
             value={date}
             min={getTodayStr()}
             onChange={handleDateChange}
-            className="w-full border border-earth-200 rounded-xl px-3 py-2.5 text-earth-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-400 bg-earth-50"
+            className="w-full border border-toss-line rounded-xl px-3 py-2.5 text-toss-label text-sm focus:outline-none focus:ring-2 focus:ring-toss-blue bg-toss-bg"
           />
-          {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
-          <p className="text-xs text-earth-400 mt-1">* 월요일은 휴무입니다</p>
+          {errors.date && <p className="text-red-400 text-xs mt-1">{errors.date}</p>}
+          <p className="text-xs text-toss-placeholder mt-1">* 월요일은 휴무입니다</p>
         </div>
 
         {/* Time Dropdown */}
-        <div id="field-time" className="bg-white rounded-2xl shadow-sm border border-earth-100 p-4">
-          <label className="block text-sm font-semibold text-earth-700 mb-2">
-            시간 선택 <span className="text-red-500">*</span>
+        <div id="field-time" className="bg-toss-white rounded-2xl border border-toss-line p-4">
+          <label className="block text-sm font-semibold text-toss-label mb-2">
+            시간 선택 <span className="text-red-400">*</span>
           </label>
           <select
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="w-full border border-earth-200 rounded-xl px-3 py-2.5 text-earth-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-400 bg-earth-50"
+            className="w-full border border-toss-line rounded-xl px-3 py-2.5 text-toss-label text-sm focus:outline-none focus:ring-2 focus:ring-toss-blue bg-toss-bg"
           >
             <option value="">시간을 선택해주세요</option>
             {TIME_OPTIONS.map((t) => (
               <option key={t} value={t}>{t}</option>
             ))}
           </select>
-          {errors.time && <p className="text-red-500 text-xs mt-1">{errors.time}</p>}
+          {errors.time && <p className="text-red-400 text-xs mt-1">{errors.time}</p>}
         </div>
 
         {/* Person Cards */}
         <div id="field-persons" className="space-y-3">
           <div className="flex items-center justify-between px-1">
-            <h2 className="text-sm font-semibold text-earth-700">인원 정보</h2>
-            <span className="text-xs text-earth-400">{persons.length}명</span>
+            <h2 className="text-sm font-semibold text-toss-label">인원 정보</h2>
+            <span className="text-xs text-toss-tertiary">{persons.length}명</span>
           </div>
           {persons.map((p, i) => (
             <PersonCard
@@ -179,10 +174,10 @@ export default function ReservationPage({ onSubmitted }) {
               showRemove={persons.length > 1}
             />
           ))}
-          {errors.persons && <p className="text-red-500 text-xs px-1">{errors.persons}</p>}
+          {errors.persons && <p className="text-red-400 text-xs px-1">{errors.persons}</p>}
           <button
             onClick={addPerson}
-            className="w-full border-2 border-dashed border-earth-300 rounded-2xl py-3 text-earth-500 text-sm font-medium hover:border-forest-400 hover:text-forest-600 transition-colors"
+            className="w-full border-2 border-dashed border-toss-line rounded-2xl py-3 text-toss-tertiary text-sm font-medium hover:border-toss-blue hover:text-toss-blue transition-colors"
           >
             + 인원 추가
           </button>
@@ -192,46 +187,46 @@ export default function ReservationPage({ onSubmitted }) {
         <SummarySection persons={persons} />
 
         {/* Customer Info */}
-        <div className="bg-white rounded-2xl shadow-sm border border-earth-100 p-4 space-y-3">
-          <h2 className="text-sm font-semibold text-earth-700">예약자 정보</h2>
+        <div className="bg-toss-white rounded-2xl border border-toss-line p-4 space-y-4">
+          <h2 className="text-sm font-semibold text-toss-label">예약자 정보</h2>
 
           <div id="field-customerName">
-            <label className="block text-xs font-medium text-earth-500 mb-1">
-              성함 <span className="text-red-500">*</span>
+            <label className="block text-xs font-medium text-toss-tertiary mb-1.5">
+              성함 <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="홍길동"
-              className="w-full border border-earth-200 rounded-xl px-3 py-2.5 text-earth-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-400 bg-earth-50"
+              className="w-full border border-toss-line rounded-xl px-3 py-2.5 text-toss-label text-sm focus:outline-none focus:ring-2 focus:ring-toss-blue bg-toss-bg placeholder-toss-placeholder"
             />
-            {errors.customerName && <p className="text-red-500 text-xs mt-1">{errors.customerName}</p>}
+            {errors.customerName && <p className="text-red-400 text-xs mt-1">{errors.customerName}</p>}
           </div>
 
           <div id="field-customerPhone">
-            <label className="block text-xs font-medium text-earth-500 mb-1">
-              연락처 <span className="text-red-500">*</span>
+            <label className="block text-xs font-medium text-toss-tertiary mb-1.5">
+              연락처 <span className="text-red-400">*</span>
             </label>
             <input
               type="tel"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
               placeholder="010-0000-0000"
-              className="w-full border border-earth-200 rounded-xl px-3 py-2.5 text-earth-800 text-sm focus:outline-none focus:ring-2 focus:ring-forest-400 bg-earth-50"
+              className="w-full border border-toss-line rounded-xl px-3 py-2.5 text-toss-label text-sm focus:outline-none focus:ring-2 focus:ring-toss-blue bg-toss-bg placeholder-toss-placeholder"
             />
-            {errors.customerPhone && <p className="text-red-500 text-xs mt-1">{errors.customerPhone}</p>}
+            {errors.customerPhone && <p className="text-red-400 text-xs mt-1">{errors.customerPhone}</p>}
           </div>
         </div>
 
         {/* Submit */}
         {errors.submit && (
-          <p className="text-red-500 text-sm text-center">{errors.submit}</p>
+          <p className="text-red-400 text-sm text-center">{errors.submit}</p>
         )}
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-forest-600 hover:bg-forest-700 disabled:bg-earth-300 text-white font-bold py-4 rounded-2xl text-base transition-colors shadow-md"
+          className="w-full bg-toss-blue hover:bg-toss-blue-hover disabled:bg-toss-placeholder text-white font-bold py-4 rounded-2xl text-base transition-colors"
         >
           {loading ? '전송 중...' : '예약 요청 보내기'}
         </button>
