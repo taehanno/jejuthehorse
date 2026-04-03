@@ -8,7 +8,7 @@ export default function Footer() {
       <p>
         📸{' '}
         <a
-          href="https://www.instagram.com/jeju_the_horse"
+          href="https://www.instagram.com/jeju_thehorse"
           target="_blank"
           rel="noopener noreferrer"
           className="text-forest-600 underline"
