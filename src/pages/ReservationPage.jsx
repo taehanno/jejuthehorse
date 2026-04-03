@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logo from '../image/Jeju logo.jpg'
 import emailjs from '@emailjs/browser'
 import PersonCard from '../components/PersonCard'
 import SummarySection from '../components/SummarySection'
@@ -121,7 +122,10 @@ export default function ReservationPage({ onSubmitted }) {
       <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-6 space-y-5">
         {/* Header */}
         <div className="text-center pb-2">
-          <h1 className="text-2xl font-bold text-earth-800">🐴 Jeju The Horse</h1>
+          <div className="flex items-center justify-center gap-2">
+            <img src={logo} alt="Jeju The Horse 로고" className="h-10 w-10 rounded-full object-cover" />
+            <h1 className="text-2xl font-bold text-earth-800">Jeju The Horse</h1>
+          </div>
           <p className="text-forest-600 font-medium mt-1">승마 체험 예약</p>
         </div>
 
