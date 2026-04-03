@@ -186,6 +186,29 @@ export default function ReservationPage({ onSubmitted }) {
         {/* Summary */}
         <SummarySection persons={persons} />
 
+        {/* Directions Notice */}
+        <div className="bg-toss-white rounded-2xl border border-toss-line p-4">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="text-base">🗺️</span>
+            <h3 className="text-sm font-semibold text-toss-label">찾아오시는 길</h3>
+          </div>
+          <p className="text-xs text-toss-tertiary leading-relaxed">
+            제주 제주시 애월읍 산록서로 81
+          </p>
+          <p className="text-xs text-toss-secondary leading-relaxed mt-1 font-medium">
+            노꼬스시에서 승마장 표지판을 따라<br />
+            파란 지붕 승마장으로 내려오세요
+          </p>
+          <a
+            href="https://map.kakao.com/link/search/제주 제주시 애월읍 산록서로 81"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 mt-2.5 text-xs text-toss-blue font-medium"
+          >
+            카카오맵에서 보기 →
+          </a>
+        </div>
+
         {/* Customer Info */}
         <div className="bg-toss-white rounded-2xl border border-toss-line p-4 space-y-4">
           <h2 className="text-sm font-semibold text-toss-label">예약자 정보</h2>
