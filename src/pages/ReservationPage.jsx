@@ -22,7 +22,7 @@ const newPerson = () => ({
   ageType: '성인',
   course: '',
   forestPath: false,
-  horse: '없음',
+  horse: '',
 })
 
 export default function ReservationPage({ onSubmitted }) {
@@ -62,8 +62,8 @@ export default function ReservationPage({ onSubmitted }) {
     if (!date) errs.date = '날짜를 선택해주세요.'
     if (!time) errs.time = '시간을 선택해주세요.'
     if (persons.length === 0) errs.persons = '최소 1명 이상 추가해주세요.'
-    const noCourse = persons.some((p) => !p.course)
-    if (noCourse) errs.persons = '모든 인원의 코스를 선택해주세요.'
+    const noSelection = persons.some((p) => !p.course && !p.horse)
+    if (noSelection) errs.persons = '모든 인원의 코스 또는 1회 기승 체험을 선택해주세요.'
     if (!customerName.trim()) errs.customerName = '예약자 성함을 입력해주세요.'
     if (!customerPhone.trim()) errs.customerPhone = '연락처를 입력해주세요.'
     return errs
