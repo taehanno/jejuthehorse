@@ -67,7 +67,7 @@ export default function ImageGallery() {
 
         {/* Caption */}
         <div className="px-3 pb-3">
-          <p className="text-xs font-semibold text-toss-label">🌿 제주 더 호스 목장</p>
+          <p className="text-xs font-semibold text-toss-label">🌿 제주 더 홀스 목장</p>
           <p className="text-xs text-toss-tertiary mt-0.5">제주 애월의 자연 속에서 즐기는 승마 체험</p>
         </div>
       </div>
