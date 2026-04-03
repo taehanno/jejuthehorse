@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 import logo from '../image/Jeju logo.jpg'
-import riding01 from '../image/riding01.jpg'
-import riding02 from '../image/riding02.jpg'
-import riding03 from '../image/riding03.jpg'
+import ImageGallery from '../components/ImageGallery'
 import PersonCard from '../components/PersonCard'
 import SummarySection from '../components/SummarySection'
 import Footer from '../components/Footer'
@@ -135,25 +133,9 @@ export default function ReservationPage({ onSubmitted }) {
         </div>
       </div>
 
-      {/* Farm Photo Banner */}
-      <div className="max-w-[480px] mx-auto w-full px-4 pt-5">
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide snap-x snap-mandatory">
-          {[riding01, riding02, riding03].map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`목장 사진 ${i + 1}`}
-              className="h-44 w-64 object-cover rounded-2xl shrink-0 snap-start"
-            />
-          ))}
-        </div>
-        <div className="mt-2 mb-1">
-          <p className="text-xs font-semibold text-toss-label">🌿 제주 더 호스 목장</p>
-          <p className="text-xs text-toss-tertiary mt-0.5">제주 애월의 자연 속에서 즐기는 승마 체험</p>
-        </div>
-      </div>
-
-      <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-3 space-y-3">
+      <div className="flex-1 max-w-[480px] mx-auto w-full px-4 py-4 space-y-3">
+        {/* Image Gallery */}
+        <ImageGallery />
 
         {/* Date Picker */}
         <div id="field-date" className="bg-toss-white rounded-2xl border border-toss-line p-4">
