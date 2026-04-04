@@ -81,7 +81,8 @@ const translations = {
     noteTitle: '⚠️ 반드시 확인해주세요',
     noteText: '현재는 신청만 완료된 상태입니다. 담당자 확인 후 전화 또는 문자로 예약 확정 안내를 드립니다.',
     noteContact: '문의: 010-2732-3666',
-    shareBtn: '카카오톡으로 공유하기',
+    shareBtn: '카카오톡 공유',
+    whatsappBtn: 'WhatsApp 공유',
     shareCopied: '예약 내용이 복사되었습니다. 카카오톡에 붙여넣기 해주세요.',
     // Footer
     footerAddr: '제주 제주시 애월읍 상가리 2156-15',
@@ -171,7 +172,8 @@ const translations = {
     noteTitle: '⚠️ 请注意',
     noteText: '目前仅完成了申请，预约尚未确认。工作人员确认后将通过电话或短信通知您预约确认结果。',
     noteContact: '咨询: 010-2732-3666',
-    shareBtn: '通过KakaoTalk分享',
+    shareBtn: 'KakaoTalk分享',
+    whatsappBtn: 'WhatsApp分享',
     shareCopied: '预约内容已复制，请粘贴到KakaoTalk。',
     // Footer
     footerAddr: '济州市涯月邑上加里2156-15',
@@ -260,7 +262,8 @@ const translations = {
     noteTitle: '⚠️ Please Read Carefully',
     noteText: 'This is a request only — your reservation is NOT yet confirmed. Our staff will contact you by call or text to confirm.',
     noteContact: 'Inquiry: 010-2732-3666',
-    shareBtn: 'Share via KakaoTalk',
+    shareBtn: 'KakaoTalk',
+    whatsappBtn: 'WhatsApp',
     shareCopied: 'Copied! Please paste it in KakaoTalk.',
     // Footer
     footerAddr: '2156-15 Sangga-ri, Aewol-eup, Jeju City',
