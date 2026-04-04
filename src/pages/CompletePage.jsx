@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Footer from '../components/Footer'
 import { calcPersonPrice, formatPrice } from '../utils/pricing'
 import { useLang } from '../context/LangContext'
@@ -5,6 +6,40 @@ import { useLang } from '../context/LangContext'
 export default function CompletePage({ data }) {
   const { t } = useLang()
   const { date, time, persons, total, customerName, customerPhone } = data
+  const [copied, setCopied] = useState(false)
+
+  const buildShareText = () => {
+    const lines = [
+      '📋 제주더홀스 예약 신청',
+      `날짜: ${date}`,
+      `시간: ${time}`,
+      `예약자: ${customerName} / ${customerPhone}`,
+      `총 인원: ${persons.length}명`,
+      '',
+      ...persons.map((p, i) => describePersonFull(p, i, t)),
+      '',
+      `총 금액: ${formatPrice(total)}원`,
+      '',
+      '※ 신청만 완료된 상태로, 담당자 확인 후 예약 확정 안내를 드립니다.',
+      '문의: 010-2732-3666',
+    ]
+    return lines.join('\n')
+  }
+
+  const handleShare = async () => {
+    const text = buildShareText()
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: '제주더홀스 예약 신청 완료', text })
+      } catch {
+        // 사용자가 취소한 경우 무시
+      }
+    } else {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 3000)
+    }
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-toss-bg">
@@ -46,6 +81,23 @@ export default function CompletePage({ data }) {
           <p className="text-amber-800 font-medium leading-relaxed">{t.noteText}</p>
           <p className="mt-2 text-amber-700">{t.noteContact}</p>
         </div>
+
+        {/* KakaoTalk Share */}
+        <button
+          onClick={handleShare}
+          className="w-full flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#f0d800] text-[#3A1D1D] font-bold py-4 rounded-2xl text-base transition-colors"
+        >
+          <img
+            src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"
+            alt="kakao"
+            className="w-5 h-5"
+            onError={(e) => { e.target.style.display = 'none' }}
+          />
+          {t.shareBtn}
+        </button>
+        {copied && (
+          <p className="text-center text-xs text-toss-secondary">{t.shareCopied}</p>
+        )}
       </div>
 
       <Footer />
@@ -64,6 +116,16 @@ function Row({ label, value }) {
 
 function describePersonFull(p, i, t) {
   const parts = [p.ageType || '—']
+
+  const TEEN_VALUES = new Set(['청소년', 'Teen', '青少年'])
+  const ADULT_VALUES = new Set(['성인', 'Adult', '成人'])
+  if (ADULT_VALUES.has(p.ageType) || TEEN_VALUES.has(p.ageType)) {
+    const bodyParts = []
+    if (p.overWeight) bodyParts.push('체중 70kg↑')
+    if (p.overHeight) bodyParts.push('키 180cm↑')
+    if (bodyParts.length > 0) parts.push(bodyParts.join(', '))
+  }
+
   if (p.horse) {
     const h = t.horses.find((h) => h.value === p.horse)
     parts.push(h ? h.label : p.horse)
