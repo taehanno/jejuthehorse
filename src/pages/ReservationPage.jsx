@@ -33,6 +33,8 @@ const newPerson = (t) => ({
   course: '',
   forestPath: false,
   horse: '',
+  overWeight: false,
+  overHeight: false,
 })
 
 export default function ReservationPage({ onSubmitted }) {

@@ -2,7 +2,8 @@ import { useLang } from '../context/LangContext'
 
 export default function PersonCard({ person, index, onChange, onRemove, showRemove }) {
   const { t } = useLang()
-  const { ageType, course, forestPath, horse } = person
+  const { ageType, course, forestPath, horse, overWeight, overHeight } = person
+  const isAdultOrTeen = ageType === t.adult || ageType === t.teen
 
   const selectCourse = (val) => {
     onChange(index, { course: val, horse: '', forestPath: val === 'A' ? false : forestPath })
@@ -35,7 +36,7 @@ export default function PersonCard({ person, index, onChange, onRemove, showRemo
         <div>
           <p className="text-xs font-semibold text-toss-tertiary mb-2">{t.ageLabel}</p>
           <div className="flex gap-2">
-            {[t.adult, t.child].map((opt) => (
+            {[t.adult, t.teen, t.child].map((opt) => (
               <label
                 key={opt}
                 className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border text-sm font-medium cursor-pointer transition-colors ${
@@ -62,9 +63,36 @@ export default function PersonCard({ person, index, onChange, onRemove, showRemo
         {ageType && (
           <div className="rounded-xl bg-amber-50 border border-amber-200 px-3 py-2.5 space-y-1.5">
             <p className="text-xs text-amber-800 whitespace-pre-line">
-              {ageType === t.child ? t.ageNoticeChild : t.ageNoticeAdult}
+              {ageType === t.child ? t.ageNoticeChild : ageType === t.teen ? t.ageNoticeTeen : t.ageNoticeAdult}
             </p>
             <p className="text-xs text-amber-700 border-t border-amber-200 pt-1.5">{t.ageNoticeCommon}</p>
+          </div>
+        )}
+
+        {/* Body Info - adult/teen only */}
+        {isAdultOrTeen && (
+          <div>
+            <p className="text-xs font-semibold text-toss-tertiary mb-2">{t.bodyInfoLabel}</p>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={overWeight}
+                  onChange={(e) => onChange(index, { overWeight: e.target.checked })}
+                  className="accent-toss-blue w-4 h-4"
+                />
+                <span className="text-sm text-toss-secondary">{t.weightOver70}</span>
+              </label>
+              <label className="flex items-center gap-1.5 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={overHeight}
+                  onChange={(e) => onChange(index, { overHeight: e.target.checked })}
+                  className="accent-toss-blue w-4 h-4"
+                />
+                <span className="text-sm text-toss-secondary">{t.heightOver180}</span>
+              </label>
+            </div>
           </div>
         )}
 

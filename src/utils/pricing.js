@@ -17,12 +17,25 @@ export function formatPrice(num) {
 }
 
 const ADULT_VALUES = new Set(['성인', 'Adult', '成人'])
+const TEEN_VALUES = new Set(['청소년', 'Teen', '青少年'])
 
 export function buildPersonsDetail(persons) {
   return persons
     .map((p, i) => {
-      const ageLabel = ADULT_VALUES.has(p.ageType) ? '성인' : '아동'
+      let ageLabel
+      if (ADULT_VALUES.has(p.ageType)) ageLabel = '성인'
+      else if (TEEN_VALUES.has(p.ageType)) ageLabel = '청소년'
+      else ageLabel = '아동'
+
       const parts = [ageLabel]
+
+      if (ADULT_VALUES.has(p.ageType) || TEEN_VALUES.has(p.ageType)) {
+        const bodyParts = []
+        if (p.overWeight) bodyParts.push('체중 70kg↑')
+        if (p.overHeight) bodyParts.push('키 180cm↑')
+        if (bodyParts.length > 0) parts.push(bodyParts.join(', '))
+      }
+
       if (p.horse) {
         parts.push(`1회 기승 / ${p.horse}`)
       } else if (p.course) {
